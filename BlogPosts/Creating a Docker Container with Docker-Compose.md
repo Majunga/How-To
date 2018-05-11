@@ -1,10 +1,4 @@
-﻿---
-title: Creating a Docker Container with Docker-Compose
-abstract: Creating docker-compose file, composing a docker service for a Asp .Net Core Website.
-weblogName: MyWebsite
-postId: 2
----
-# Creating a Docker Container with Docker-Compose
+﻿# Creating a Docker Container with Docker-Compose
 
 ### What is docker-compose?
 

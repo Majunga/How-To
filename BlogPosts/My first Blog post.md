@@ -1,11 +1,4 @@
-﻿---
-title: My first Blog post
-abstract: Creating Dockerfile, Docker Image and Docker Container for Asp .Net Core Website.
-keywords: ''
-weblogName: MyWebsite
-postId: 1
----
-# My first Blog post
+﻿# My first Blog post
 
 ## Using Docker
 
