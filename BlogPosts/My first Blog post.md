@@ -19,17 +19,17 @@ Since we will be using a Windows machine you will first need to install Docker f
 
 Once installed you will need to right click the Docker Icon on your task bar notification area in the bottom right.
 
-![](image/dockerimage.png)
+![](Image/dockerimage.png)
 
 Click Switch to Linux containers...
 
-![](image/rightclickdocker.png)
+![](Image/rightclickdocker.png)
 
 Right click the Docker Icon again and click Settings...
 
 In Docker Settings go to Shared Drives and check the drives you will be using for your projects. Then click Apply.
 
-![](image/sharedDriveSettings.png)
+![](Image/sharedDriveSettings.png)
 
 #### Docker is now installed and ready to use.
 
