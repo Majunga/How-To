@@ -1,0 +1,15 @@
+version: '3.4'
+
+services:
+  razorpages:
+    image: ${DOCKER_REGISTRY}razorpages
+    build:
+      context: .
+      dockerfile: RazorPages/Dockerfile
+
+  mvc:
+    image: ${DOCKER_REGISTRY}mvc
+    build:
+      context: .
+      dockerfile: MVC/Dockerfile
+
