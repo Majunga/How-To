@@ -20,7 +20,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\IdentityDataLayer\IdentityDataLayer.csproj" />
+    <ProjectReference Include="..\IdentityDataLayer\IdentityDataLayer.csproj" />
   </ItemGroup>
 
 </Project>

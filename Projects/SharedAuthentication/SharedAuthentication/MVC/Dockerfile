@@ -1,9 +1,8 @@
-FROM microsoft/aspnetcore:2.0 AS base
+FROM microsoft/aspnetcore:2.0.8 AS base
 WORKDIR /app
 EXPOSE 56377
-EXPOSE 44367
 
-FROM microsoft/aspnetcore-build:2.0 AS build
+FROM microsoft/aspnetcore-build:2.0.8-2.1.200 AS build
 WORKDIR /src
 COPY MVC/MVC.csproj MVC/
 RUN dotnet restore MVC/MVC.csproj

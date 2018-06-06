@@ -4,22 +4,19 @@ services:
   razorpages:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
-      - ASPNETCORE_URLS=https://+:443;http://+:80
-      - ASPNETCORE_HTTPS_PORT=44352
+      - ASPNETCORE_URLS=http://+:80
     ports:
       - "55750:80"
-      - "44352:443"
     volumes:
-      - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
       - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
   mvc:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
-      - ASPNETCORE_URLS=https://+:443;http://+:80
-      - ASPNETCORE_HTTPS_PORT=44367
+      - ASPNETCORE_URLS=http://+:80
     ports:
       - "56377:80"
-      - "44367:443"
     volumes:
-      - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
       - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
+  identitydatalayer:
+    environment:
+      POSTGRES_PASSWORD: damienbod

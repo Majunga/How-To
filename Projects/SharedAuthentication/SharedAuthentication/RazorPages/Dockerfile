@@ -1,9 +1,8 @@
-FROM microsoft/aspnetcore:2.0 AS base
+FROM microsoft/aspnetcore:2.0.8 AS base
 WORKDIR /app
 EXPOSE 55750
-EXPOSE 44352
 
-FROM microsoft/aspnetcore-build:2.0 AS build
+FROM microsoft/aspnetcore-build:2.0.8-2.1.200 AS build
 WORKDIR /src
 COPY RazorPages/RazorPages.csproj RazorPages/
 RUN dotnet restore RazorPages/RazorPages.csproj
