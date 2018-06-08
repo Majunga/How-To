@@ -1,0 +1,31 @@
+version: '3.4'
+
+services:
+  razorpages:
+    image: ${DOCKER_REGISTRY}razorpages
+    build:
+      context: .
+      dockerfile: RazorPages/Dockerfile
+    depends_on: 
+      - identitydatalayer
+
+  mvc:
+    image: ${DOCKER_REGISTRY}mvc
+    build:
+      context: .
+      dockerfile: MVC/Dockerfile
+    depends_on: 
+      - identitydatalayer
+
+  identitydatalayer:
+    image: ${DOCKER_REGISTRY}identitydatalayer
+# BUG with VS2017 where it doesn't like some 
+    build:
+      context: .
+      dockerfile: IdentityDataLayer/Dockerfile
+    restart: always
+    volumes:
+      - sqldata:/var/lib/postgresql/data
+
+volumes:
+  sqldata: 
