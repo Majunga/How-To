@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Configuration.Json;
 using Microsoft.Extensions.Logging;
 
 namespace MVC
@@ -16,11 +17,19 @@ namespace MVC
         {
             BuildWebHost(args).Run();
         }
+        public static IConfiguration Configure() =>
+            new ConfigurationBuilder()
+                .SetBasePath(Directory.GetCurrentDirectory())
+                .AddJsonFile("appSettings.json", optional: true, reloadOnChange: true)
+                .AddJsonFile($"appSettings.Development.json", optional: true, reloadOnChange: true)
+                .AddJsonFile($"appSettings.Staging.json", optional: true, reloadOnChange: true)
+                .Build();
 
         public static IWebHost BuildWebHost(string[] args) =>
-            WebHost.CreateDefaultBuilder(args)
-                .UseKestrel()
+            WebHost.CreateDefaultBuilder(args).UseKestrel()
                 .UseStartup<Startup>()
+                .UseConfiguration(Configure())
                 .Build();
+
     }
 }

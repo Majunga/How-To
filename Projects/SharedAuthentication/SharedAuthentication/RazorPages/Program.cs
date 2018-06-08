@@ -16,10 +16,18 @@ namespace RazorPages
         {
             BuildWebHost(args).Run();
         }
+        public static IConfiguration Configure() =>
+            new ConfigurationBuilder()
+                .SetBasePath(Directory.GetCurrentDirectory())
+                .AddJsonFile("appSettings.json", optional: true, reloadOnChange: true)
+                .AddJsonFile($"appSettings.Development.json", optional: true, reloadOnChange: true)
+                .AddJsonFile($"appSettings.Staging.json", optional: true, reloadOnChange: true)
+                .Build();
 
         public static IWebHost BuildWebHost(string[] args) =>
-            WebHost.CreateDefaultBuilder(args)
+            WebHost.CreateDefaultBuilder(args).UseKestrel()
                 .UseStartup<Startup>()
+                .UseConfiguration(Configure())
                 .Build();
     }
 }

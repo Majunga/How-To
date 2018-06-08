@@ -18,5 +18,7 @@ services:
     volumes:
       - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
   identitydatalayer:
+    ports:
+      - "5432:5432"
     environment:
-      POSTGRES_PASSWORD: damienbod
+      POSTGRES_PASSWORD: supersecret

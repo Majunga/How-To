@@ -17,6 +17,7 @@ namespace IdentityDataLayer.Data
                 .AddJsonFile("appsettings.json")
                 .Build();
             var builder = new DbContextOptionsBuilder<ApplicationDbContext>();
+            
             var connectionString = configuration.GetConnectionString("DefaultConnection");
             builder.UseNpgsql(connectionString);
             return new ApplicationDbContext(builder.Options);

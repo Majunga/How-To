@@ -20,15 +20,12 @@ services:
   identitydatalayer:
     image: ${DOCKER_REGISTRY}identitydatalayer
 # BUG with VS2017 where it doesn't like some 
-#    build:
-#      context: .
-#      dockerfile: IdentityDataLayer/Dockerfile
+    build:
+      context: .
+      dockerfile: IdentityDataLayer/Dockerfile
     restart: always
-    ports:
-      - 5432:5432
-
     volumes:
-      - pgdata:/var/lib/postgresql/data
+      - sqldata:/var/lib/postgresql/data
 
 volumes:
-  pgdata: 
+  sqldata: 
