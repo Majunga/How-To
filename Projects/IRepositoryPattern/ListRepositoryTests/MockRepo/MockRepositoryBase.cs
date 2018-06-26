@@ -16,7 +16,6 @@
             this.Context = context;
         }
 
-
         internal IList<TEntity> Context { get; set; }
 
         public int Add(TEntity entity)

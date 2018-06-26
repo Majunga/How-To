@@ -8,11 +8,20 @@
     using RepositoryPattern.Interfaces;
     using RepositoryPattern.Repository.Exceptions;
 
+    /// <summary>
+    /// Entity Framework base class
+    /// </summary>
+    /// <typeparam name="TEntity">Entities Data Model Class</typeparam>
     public class EntityFrameworkBase<TEntity> : IRepository<TEntity>, IRepositoryExtended<TEntity>
          where TEntity : class, IEntity
     {
         internal DbContext Context;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="EntityFrameworkBase{TEntity}"/> class.
+        ///
+        /// </summary>
+        /// <param name="context">DBcontext of Database</param>
         public EntityFrameworkBase(DbContext context)
         {
             this.Context = context;

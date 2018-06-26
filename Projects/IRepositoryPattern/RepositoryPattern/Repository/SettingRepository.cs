@@ -5,8 +5,16 @@
     using Microsoft.EntityFrameworkCore;
     using RepositoryPattern.Entities;
 
+    /// <summary>
+    /// Repository access for settings
+    /// </summary>
     public class SettingRepository : EntityFrameworkBase<Setting>, ISettingRepository
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SettingRepository"/> class.
+        ///
+        /// </summary>
+        /// <param name="context">DBContext</param>
         public SettingRepository(DataContext context)
             : base(context)
         {
