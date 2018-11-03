@@ -328,3 +328,7 @@ ASALocalRun/
 
 # MFractors (Xamarin productivity tool) working folder 
 .mfractor/
+Projects/RabbitMQ/Remote/Infrastructure/Scripts/run.ps1
+.terraform
+**/terraform.tfstate
+**/terraform.tfstate.backup
