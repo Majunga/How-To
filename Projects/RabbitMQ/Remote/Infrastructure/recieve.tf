@@ -1,7 +1,6 @@
 module "recieve" {
-  source = "./modules/droplets/default"
+  source = "./modules/docker"
   name = "recieve"
-  privatekey = "${file(var.pvt_key)}"
-  fingerprint = "${var.ssh_fingerprint}"
-  image = "docker-18-04"
+  imageName = "send"
+  imageTag = "latest"
 }

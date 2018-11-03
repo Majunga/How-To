@@ -1,0 +1,14 @@
+variable "do_token" {
+  description = "DigitalOcean Token"
+}
+variable "pub_key" {
+
+}
+
+variable "pvt_key" {
+
+}
+
+variable "ssh_fingerprint" {
+
+}

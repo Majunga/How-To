@@ -1,7 +1,6 @@
 module "queues" {
-  source = "./modules/droplets/default"
+  source = "./modules/docker"
   name = "queues"
-  privatekey = "${file(var.pvt_key)}"
-  fingerprint = "${var.ssh_fingerprint}"
-  image = "docker-18-04"
+  imageName = "rabbitmq"
+  imageTag = "management"
 }
