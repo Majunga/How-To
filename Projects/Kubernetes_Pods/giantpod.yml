@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: giantpod
+  labels:
+    type: queues
+spec:
+  containers:
+  - name: queues
+    image: rabbitmq:management
+    ports:
+    - containerPort: 15672
+      protocol: TCP
+  - name: send
+    image: send:giantpod
+    env:
+    - name: queues
+      value: localhost
+  - name: receive
+    image: receive:giantpod
+    env:
+    - name: queues
+      value: localhost
