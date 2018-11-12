@@ -3,13 +3,14 @@ kind: Pod
 metadata:
   name: giantpod
   labels:
-    type: stack
+    type: queues
 spec:
   containers:
   - name: queues
     image: rabbitmq:management
     ports:
     - containerPort: 15672
+      protocol: TCP
   - name: send
     image: send:giantpod
     env:
@@ -20,14 +21,3 @@ spec:
     env:
     - name: queues
       value: localhost
-
-# apiVersion: v1
-# kind: Service
-# metadata:
-#   name: rabbitmq
-# spec:
-#   ports:
-#   - port: 15672
-#   selector:
-#     type: queues
-#     service: queues
