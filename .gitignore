@@ -332,3 +332,4 @@ Projects/RabbitMQ/Remote/Infrastructure/Scripts/run.ps1
 .terraform
 **/terraform.tfstate
 **/terraform.tfstate.backup
+README.md.saved.bak
