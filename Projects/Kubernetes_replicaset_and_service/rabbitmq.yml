@@ -1,0 +1,88 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: rabbitmq
+spec:
+  selector:
+    matchLabels:
+      type: rabbitmq
+      service: rabbitmq
+  template:
+    metadata:
+      labels:
+        type: rabbitmq
+        service: rabbitmq
+    spec:
+      containers:
+      - name: rabbitmq
+        image: rabbitmq:management
+        ports:
+        - containerPort: 5672
+          name: amqp
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: queue-management
+spec:
+  type: NodePort
+  ports:
+  - port: 15672
+    name: http
+  selector:
+    type: rabbitmq
+    service: rabbitmq
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: rabbitmq
+  labels:
+    app: rabbitmq
+spec:
+  ports:
+  - port: 5672
+    name: amqp
+  - port: 4369
+    name: epmd
+  - port: 25672
+    name: rabbitmq-dist
+  clusterIP: None
+  selector:
+    type: rabbitmq
+    service: rabbitmq
+
+---
+
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: sendandreceive
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      type: sendandreceive
+      serivce: rabbitmq
+  template:
+    metadata:
+      labels:
+        type: sendandreceive
+        serivce: rabbitmq
+        language: csharp
+    spec:
+      containers:
+      - name: send
+        image: send:rabbitmq
+        env:
+        - name: messagequeue
+          value: rabbitmq
+      - name: receive
+        image: receive:rabbitmq
+        env:
+        - name: messagequeue
+          value: rabbitmq
