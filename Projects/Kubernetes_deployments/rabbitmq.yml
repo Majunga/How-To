@@ -1,12 +1,18 @@
 apiVersion: apps/v1
-kind: ReplicaSet
+kind: Deployment
 metadata:
   name: rabbitmq
 spec:
+  replicas: 1
   selector:
     matchLabels:
       type: rabbitmq
       service: rabbitmq
+  minReadySeconds: 5
+  progressDeadlineSeconds: 60
+  revisionHistoryLimit: 5
+  strategy:
+    type: RollingUpdate
   template:
     metadata:
       labels:
@@ -59,28 +65,59 @@ spec:
 ---
 
 apiVersion: apps/v1
-kind: ReplicaSet
+kind: Deployment
 metadata:
-  name: sendandreceive
+  name: send
 spec:
-  replicas: 1
+  replicas: 3
   selector:
     matchLabels:
-      type: sendandreceive
+      type: send
       serivce: rabbitmq
+  minReadySeconds: 1
+  progressDeadlineSeconds: 60
+  revisionHistoryLimit: 5
+  strategy:
+    type: RollingUpdate
   template:
     metadata:
       labels:
-        type: sendandreceive
+        type: send
         serivce: rabbitmq
         language: csharp
     spec:
       containers:
       - name: send
-        image: send:rabbitmq
+        image: send:rabbitmq2
         env:
         - name: messagequeue
           value: rabbitmq
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: receive
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      type: receive
+      serivce: rabbitmq
+  minReadySeconds: 1
+  progressDeadlineSeconds: 60
+  revisionHistoryLimit: 5
+  strategy:
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        type: receive
+        serivce: rabbitmq
+        language: csharp
+    spec:
+      containers:
       - name: receive
         image: receive:rabbitmq
         env:
